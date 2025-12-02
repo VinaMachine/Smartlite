@@ -1,4 +1,4 @@
-# AI_SMARTLITE
+<!-- # AI_SMARTLITE
 
 AI platform with microservices architecture for speech recognition, text-to-speech, and language processing.
 
@@ -60,4 +60,4 @@ service/
 ├── config/                       # Configuration management
 ├── schemas/                      # Request/response schemas
 └── utils/                        # Utility functions
-```
+``` -->
