@@ -5,12 +5,20 @@ services:
     build: ./apps/gateway
     ports:
       - "8080:8080"
-    environment:
-      - SERVICE_NAME=gateway
     networks:
       - smartlite-network
     depends_on:
       - input-handler
+    environment:
+      - SERVICE_NAME=gateway
+      - MAX_CONCURRENT_SESSIONS=80
+    volumes:
+      - ./config:/app/config:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 3G
 
   input-handler:
     build: ./apps/input-handler
@@ -29,6 +37,11 @@ services:
       - SERVICE_NAME=preprocessor
     networks:
       - smartlite-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
 
   asr-service:
     build: ./apps/asr-service
@@ -37,10 +50,16 @@ services:
     environment:
       - SERVICE_NAME=asr-service
       - MODEL_PATH=/models/asr
+      - MAX_STREAMS=60
     volumes:
       - ./models:/models
     networks:
       - smartlite-network
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 6G
 
   text-cleaner:
     build: ./apps/text-cleaner
@@ -58,10 +77,16 @@ services:
     environment:
       - SERVICE_NAME=llm-service
       - MODEL_PATH=/models/llm
+      - MAX_CONCURRENT=8
     volumes:
       - ./models:/models
     networks:
       - smartlite-network
+    deploy:
+      resources:
+        limits:
+          cpus: "6"
+          memory: 12G
 
   semantic-formatter:
     build: ./apps/semantic-formatter
@@ -71,6 +96,12 @@ services:
       - SERVICE_NAME=semantic-formatter
     networks:
       - smartlite-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+
 
   tts-service:
     build: ./apps/tts-service
@@ -79,10 +110,16 @@ services:
     environment:
       - SERVICE_NAME=tts-service
       - MODEL_PATH=/models/tts
+      - SERVER_TTS_LIMIT=10
     volumes:
       - ./models:/models
     networks:
       - smartlite-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2G
 
   audio-post:
     build: ./apps/audio-post
