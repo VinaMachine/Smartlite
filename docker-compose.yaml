@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/gateway/main.py"]
+    environment:
+      - SERVICE_NAME=gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - asr
+      - llm
+      - tts
+
+  asr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/asr/main.py"]
+    environment:
+      - SERVICE_NAME=asr
+
+  cleaner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/cleaner/main.py"]
+
+  formatter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/formatter/main.py"]
+
+  llm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/llm/main.py"]
+
+  tts:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/tts/main.py"]
+
+  post:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/post/main.py"]
+
+  delivery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "services/delivery/main.py"]

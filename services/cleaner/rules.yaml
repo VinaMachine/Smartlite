@@ -1,0 +1,7 @@
+# Regex và rule đơn giản cho cleaner
+normalization:
+  - strip_extra_spaces
+  - lowercase_when_confidence_low
+bad_phrases:
+  - "uh"
+  - "ờ"

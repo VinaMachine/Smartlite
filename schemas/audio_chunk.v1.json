@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smartlite/audio_chunk.v1.json",
+  "title": "AudioChunkV1",
+  "type": "object",
+  "required": ["seq", "timestamp_ms", "codec", "duration_ms", "base64"],
+  "properties": {
+    "seq": {"type": "integer", "minimum": 0},
+    "timestamp_ms": {"type": "integer", "minimum": 0},
+    "codec": {"type": "string", "enum": ["opus", "pcm16", "flac"]},
+    "duration_ms": {"type": "integer", "minimum": 1},
+    "base64": {"type": "string", "contentEncoding": "base64"}
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "seq": 124,
+      "timestamp_ms": 1699999999999,
+      "codec": "opus",
+      "duration_ms": 20,
+      "base64": "...."
+    }
+  ]
+}

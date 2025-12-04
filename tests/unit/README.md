@@ -1,3 +1,3 @@
 # Unit Tests
 
-This directory contains unit tests for individual components and functions.
+Chứa test nhỏ cho từng service (ví dụ transformer, schema validator).

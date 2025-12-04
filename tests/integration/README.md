@@ -1,3 +1,3 @@
 # Integration Tests
 
-This directory contains integration tests for testing interactions between services.
+Kịch bản chạy xuyên suốt nhiều services bằng các schema chính thức.

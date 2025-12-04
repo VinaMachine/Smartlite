@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smartlite/session_envelope.v1.json",
+  "title": "SessionEnvelopeV1",
+  "type": "object",
+  "required": [
+    "session_id",
+    "device_tier",
+    "language",
+    "residency",
+    "llm_preset",
+    "tts_capability"
+  ],
+  "properties": {
+    "session_id": {"type": "string", "pattern": "^sess_[0-9A-Za-z]+$"},
+    "device_tier": {"type": "string", "enum": ["mobile", "desktop", "edge"]},
+    "language": {"type": "string", "minLength": 2, "maxLength": 5},
+    "residency": {"type": "string", "minLength": 2, "maxLength": 2},
+    "llm_preset": {"type": "string"},
+    "tts_capability": {
+      "type": "object",
+      "properties": {
+        "device_tts_ok": {"type": "boolean"}
+      },
+      "required": ["device_tts_ok"],
+      "additionalProperties": true
+    },
+    "auth_token": {"type": "string"},
+    "traceparent": {"type": "string"}
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "session_id": "sess_12345",
+      "device_tier": "mobile",
+      "language": "vi",
+      "residency": "vn",
+      "llm_preset": "default",
+      "tts_capability": {"device_tts_ok": true},
+      "auth_token": "eyJ..",
+      "traceparent": "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+alerts:
+  - name: latency_spike
+    metric: pipeline_latency_ms
+    condition: avg_over_5m > 1000
+    action: page_oncall
+  - name: asr_error_rate
+    metric: asr_errors_per_min
+    condition: avg_over_5m > 5
+    action: slack_notify

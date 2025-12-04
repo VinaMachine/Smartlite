@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://smartlite/error_model.v1.json",
+  "title": "ErrorModelV1",
+  "type": "object",
+  "required": ["code", "message", "retryable"],
+  "properties": {
+    "code": {"type": "string"},
+    "message": {"type": "string"},
+    "retryable": {"type": "boolean"}
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "code": "SCHEMA_MAJORMISMATCH",
+      "message": "Client schema version 0.9 not supported.",
+      "retryable": false
+    }
+  ]
+}
