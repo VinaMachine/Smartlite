@@ -1,6 +1,0 @@
-# Config cho API Gateway
-listen_port: 8080
-transport: http
-schema_version: v1
-fanout_targets: asr,llm,tts,cleaner,formatter,post,delivery
-trace_sample_rate: 0.1
